@@ -70,7 +70,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    sh "docker push $IMAGE_NAME:$TAG"
+                    sh "docker push $IMAGE_NAME:$IMAGE_TAG"
                 }
             }
         }
