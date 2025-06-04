@@ -57,12 +57,20 @@ pipeline {
         //     }
         // }
 
+        stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials',
+                                                 usernameVariable: 'DOCKERHUB_USER',
+                                                 passwordVariable: 'DOCKERHUB_PASS')]) {
+                    sh "echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin"
+                }
+            }
+        }
+
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', REGISTRY_CREDENTIALS) {
-                        sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
-                    }
+                    sh "docker push $IMAGE_NAME:$TAG"
                 }
             }
         }
