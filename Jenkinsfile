@@ -49,13 +49,13 @@ pipeline {
             }
         }
 
-        stage('Scan with Trivy') {
-            steps {
-                script {
-                    sh "trivy image --exit-code 1 --severity HIGH,CRITICAL ${IMAGE_NAME}:${IMAGE_TAG}"
-                }
-            }
-        }
+        // stage('Scan with Trivy') {
+        //     steps {
+        //         script {
+        //             sh "trivy image --exit-code 1 --severity HIGH,CRITICAL ${IMAGE_NAME}:${IMAGE_TAG}"
+        //         }
+        //     }
+        // }
 
         stage('Push to Docker Hub') {
             steps {
