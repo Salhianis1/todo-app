@@ -16,7 +16,7 @@ spec:
         app: todo-app
     spec:
       containers:
-        - name: todo-app-container
-          image: salhianis20/todo-app:latest
+        - name: todo-app
+          image: salhianis20/todo-app
           ports:
             - containerPort: 3000
